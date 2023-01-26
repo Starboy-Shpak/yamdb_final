@@ -1,5 +1,5 @@
 # YAMDB_FINAL (Версия с CI/CD проекта)
-https://github.com/Starboy-Shpak/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg
+![yamdb_workflow](https://github.com/Starboy-Shpak/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 REST API проект для сервиса YAMDB — платформа для сбора отзывов о фильмах, книгах, музыке и чего угодно еще.
 

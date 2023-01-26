@@ -1,4 +1,3 @@
-from api_yamdb.settings import DEFAULT_FROM_EMAIL
 from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
@@ -9,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from reviews.models import Category, Genre, Review, Title, User
+
+from api_yamdb.settings import DEFAULT_FROM_EMAIL
 
 from .filters import TitlesFilter
 from .mixins import ListCreateDestroyViewSet
