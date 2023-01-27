@@ -12,8 +12,8 @@ YAMDB собирает отзывы пользователей на произв
 Клонируем репозиторий и переходим в него:
 
 ```
-git clone git@github.com:Starboy-Shpak/infra_sp2.git
-cd infra_sp2
+git clone git@github.com:Starboy-Shpak/yamdb_final.git
+cd yamdb_final
 ```
 Переходим в папку с файлом docker-compose.yaml:
 ```
@@ -29,25 +29,25 @@ POSTGRES_PASSWORD=<password>   # пароль для подключения к �
 DB_HOST=db                     # название сервиса (контейнера)
 DB_PORT=5432                   # порт для подключения к БД
 ```
-Далее запускаем Docker и поднимаем контейнеры (infra_db_1, infra_web_1, infra_nginx_1):
+Далее запускаем Docker Compose:
 ```
-docker-compose up -d --build
+docker compose up -d --build
 ```
 Выполняем миграции:
 ```
-docker-compose exec web python manage.py migrate
+docker compose exec web python manage.py migrate
 ```
 Создаем суперпользователя:
 ```
-docker-compose exec web python manage.py createsuperuser
+docker compose exec web python manage.py createsuperuser
 ```
 Собираем статику:
 ```
-docker-compose exec web python manage.py collectstatic --no-input
+docker compose exec web python manage.py collectstatic --no-input
 ```
 Создаем дамп базы данных (нет в текущем репозитории):
 ```
-docker-compose exec web python manage.py dumpdata > dumpPostrgeSQL.json
+docker compose exec web python manage.py dumpdata > dumpPostrgeSQL.json
 ```
 
 Админка проекта доступна по: [ссылке](http://51.250.18.184/admin/)
