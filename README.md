@@ -49,6 +49,7 @@ docker compose exec web python manage.py collectstatic --no-input
 ```
 docker compose exec web python manage.py dumpdata > dumpPostrgeSQL.json
 ```
+Документация проекта доступна по: [ссылке](http://51.250.18.184/redoc/)
 
 Админка проекта доступна по: [ссылке](http://51.250.18.184/admin/)
 
