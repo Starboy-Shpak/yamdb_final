@@ -7,29 +7,51 @@ REST API проект для сервиса YAMDB — платформа для 
 
 YAMDB собирает отзывы пользователей на произведения. Произведения делятся на категории: «Книги», «Фильмы», «Музыка» и т.д. Список категорий можно расширить.
 
-### Технологии
-Python, DRF, JWT
-
 ### Как запустить проект:
-- Клонировать репозиторий и перейти в него в командной строке:
+
+Клонируем репозиторий и переходим в него:
+
 ```
-git clone git@github.com:Starboy-Shpak/api_yamdb.git
-cd api_yamdb/
-``` 
-- Cоздать и активировать виртуальное окружение:
+git clone git@github.com:Starboy-Shpak/yamdb_final.git
+cd yamdb_final
 ```
-python -m venv env
-source env/Scripts/activate
-``` 
-- Установить зависимости из файла requirements.txt:
+Переходим в папку с файлом docker-compose.yaml:
 ```
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-``` 
-- Перейти в каталог и выполнить миграции:
+cd infra
 ```
-cd api_yamdb/
-python manage.py migrate
-``` 
-- Запустить проект:
+Создаем в директории /infra файл  `.env`  с переменными окружения:
 ```
+SECRET_KEY=<key>               # стандартный ключ, который создается при старте проекта
+
+DB_NAME=postgres               # имя БД
+POSTGRES_USER=postgres         # логин для подключения к БД
+POSTGRES_PASSWORD=<password>   # пароль для подключения к БД (установите свой)
+DB_HOST=db                     # название сервиса (контейнера)
+DB_PORT=5432                   # порт для подключения к БД
+```
+Далее запускаем Docker Compose:
+```
+docker compose up -d --build
+```
+Выполняем миграции:
+```
+docker compose exec web python manage.py migrate
+```
+Создаем суперпользователя:
+```
+docker compose exec web python manage.py createsuperuser
+```
+Собираем статику:
+```
+docker compose exec web python manage.py collectstatic --no-input
+```
+Создаем дамп базы данных (нет в текущем репозитории):
+```
+docker compose exec web python manage.py dumpdata > dumpPostrgeSQL.json
+```
+
+Админка проекта доступна по: [ссылке](http://51.250.18.184/admin/)
+
+***
+Автор: Вадим Шпак.
+Связаться со мной можно в [телеграм](https://t.me/starboy_shpak/)
